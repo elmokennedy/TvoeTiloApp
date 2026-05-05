@@ -1,0 +1,6 @@
+@TvoeTiloApp.Api_HostAddress = http://localhost:5042
+
+GET {{TvoeTiloApp.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
