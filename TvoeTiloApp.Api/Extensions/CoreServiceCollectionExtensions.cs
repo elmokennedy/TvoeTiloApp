@@ -9,7 +9,10 @@ namespace TvoeTiloApp.Api.Extensions
     {
         public static IServiceCollection AddCustomCoreServices(this IServiceCollection services)
         {
+            services.AddTransient<IUserService, UserService>();
             services.AddTransient<IClientService, ClientService>();
+
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IClientRepository, ClientRepository>();
 
             return services;

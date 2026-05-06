@@ -6,6 +6,7 @@ namespace TvoeTiloApp.Infrastructure.DataAccess.DbContexts
     public class TvoeTiloAppDbContext : DbContext
     {
         public DbSet<Client> Clients { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public TvoeTiloAppDbContext(DbContextOptions<TvoeTiloAppDbContext> options) : base(options)
         {
