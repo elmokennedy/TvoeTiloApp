@@ -1,10 +1,7 @@
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using TvoeTiloApp.Api.Auth;
 using TvoeTiloApp.Api.Extensions;
 using TvoeTiloApp.Core.AutoMapperProfiles;
@@ -64,21 +61,6 @@ namespace TvoeTiloApp.Api
 
             app.UseAuthentication();
             app.UseAuthorization();
-
-            app.Map("/login/{username}", (string username) =>
-            {
-                var claims = new List<Claim> { new Claim(ClaimTypes.Name, username) };
-                var jwt = new JwtSecurityToken(
-                    issuer: AuthOptions.Issuer,
-                    audience: AuthOptions.Audience,
-                    claims: claims,
-                    expires: DateTime.UtcNow.AddMinutes(2),
-                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-
-                return new JwtSecurityTokenHandler().WriteToken(jwt);
-            });
-
-            app.Map("/data", [Authorize] () => new { message = "Hello Tvoe Tilo!" });
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

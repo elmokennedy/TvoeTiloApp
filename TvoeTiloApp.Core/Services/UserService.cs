@@ -20,10 +20,10 @@ namespace TvoeTiloApp.Core.Services
         public async Task<UserLoginResponse> GetLoginUser(UserLoginRequest request)
         {
             var user = await _repository.GetLoginUser(request.Email, request.Password);
-            if (user is null)
-                throw new Exception("User not found");
+            //if (user is null)
+            //    throw new Exception("User not found");
 
-            return _mapper.Map<UserLoginResponse>(request);
+            return _mapper.Map<UserLoginResponse>(user);
         }
     }
 }

@@ -7,10 +7,9 @@ namespace TvoeTiloApp.Infrastructure.DataAccess.DbContexts
     {
         public DbSet<User> Users { get; set; }
 
-        //public TvoeTiloAppDbContext(DbContextOptions<TvoeTiloAppDbContext> options) : base(options)
-        //{
-        //    Database.EnsureCreated();
-        //}
+        public TvoeTiloAppDbContext(DbContextOptions<TvoeTiloAppDbContext> options) : base(options)
+        {
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
