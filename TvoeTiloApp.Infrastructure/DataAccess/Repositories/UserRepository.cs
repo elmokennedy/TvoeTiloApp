@@ -14,9 +14,25 @@ namespace TvoeTiloApp.Infrastructure.DataAccess.Repositories
             context = _context;
         }
 
-        public async Task<User> GetLoginUser(string email, string passwordHash)
+        public IQueryable<User> GetAll()
+        {
+            return context.Users;
+        }
+
+        public async Task<User> GetUserByEmailAsync(string email)
+        {
+            return await context.Users.SingleOrDefaultAsync(u => u.Email == email);
+        }
+
+        public async Task<User> GetLoginUserAsync(string email, string passwordHash)
         {
             return await context.Users.SingleOrDefaultAsync(u => u.Email == email && u.PasswordHash == passwordHash);
+        }
+
+        public async Task AddAsync(User entity)
+        {
+            await context.AddAsync(entity);
+            await context.SaveChangesAsync();
         }
     }
 }

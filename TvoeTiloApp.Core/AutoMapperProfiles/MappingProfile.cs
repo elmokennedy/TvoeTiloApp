@@ -10,6 +10,7 @@ namespace TvoeTiloApp.Core.AutoMapperProfiles
         {
             CreateMap<ClientProfile, ClientResponse>();
             CreateMap<User, UserLoginResponse>();
+            CreateMap<User, UserResponse>();
         }
     }
 }

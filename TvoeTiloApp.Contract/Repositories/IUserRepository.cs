@@ -4,6 +4,12 @@ namespace TvoeTiloApp.Contract.Repositories
 {
     public interface IUserRepository
     {
-        Task<User> GetLoginUser(string email, string passwordHash);
+        IQueryable<User> GetAll();
+
+        Task<User> GetUserByEmailAsync(string email);
+
+        Task<User> GetLoginUserAsync(string email, string passwordHash);
+
+        Task AddAsync(User entity);
     }
 }
