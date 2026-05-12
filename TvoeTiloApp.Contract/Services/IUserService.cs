@@ -10,5 +10,7 @@ namespace TvoeTiloApp.Contract.Services
         Task<UserLoginResponse> GetLoginUser(UserLoginRequest request);
 
         Task CreateClientUser(CreateClientUserRequest request);
+
+        Task UpdateClientUser(UpdateClientUserRequest request);
     }
 }

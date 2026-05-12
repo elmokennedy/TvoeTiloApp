@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TvoeTiloApp.Contract.Services;
 using TvoeTiloApp.Model.Requests;
 
 namespace TvoeTiloApp.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/users")]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;

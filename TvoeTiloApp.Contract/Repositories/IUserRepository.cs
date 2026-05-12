@@ -11,5 +11,7 @@ namespace TvoeTiloApp.Contract.Repositories
         Task<User> GetLoginUserAsync(string email, string passwordHash);
 
         Task AddAsync(User entity);
+
+        Task UpdateAsync(User entity);
     }
 }
