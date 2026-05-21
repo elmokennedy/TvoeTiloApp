@@ -18,23 +18,31 @@ namespace TvoeTiloApp.Api.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var result = _userService.GetAll();
+            var result = _userService.GetActiveClients();
 
             return StatusCode(StatusCodes.Status200OK, result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateClient(CreateClientUserRequest request)
+        public async Task<IActionResult> CreateClient([FromBody] CreateClientUserRequest request)
         {
             await _userService.CreateClientUser(request);
 
             return StatusCode(StatusCodes.Status201Created);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateClient(UpdateClientUserRequest request)
+        [HttpPut("{userId}")]
+        public async Task<IActionResult> UpdateClient([FromRoute] int userId, [FromBody] UpdateClientUserRequest request)
         {
-            await _userService.UpdateClientUser(request);
+            await _userService.UpdateClientUser(userId, request);
+
+            return StatusCode(StatusCodes.Status200OK);
+        }
+
+        [HttpDelete("{userId}")]
+        public async Task<IActionResult> DeleteClient([FromRoute] int userId)
+        {
+            await _userService.DeleteClientUser(userId);
 
             return StatusCode(StatusCodes.Status200OK);
         }
