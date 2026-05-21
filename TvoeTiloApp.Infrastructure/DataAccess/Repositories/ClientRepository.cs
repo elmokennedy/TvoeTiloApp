@@ -13,9 +13,9 @@ namespace TvoeTiloApp.Infrastructure.DataAccess.Repositories
             context = _context;
         }
 
-        public IQueryable<Client> GetAll()
+        public IQueryable<ClientProfile> GetAll()
         {
-            return context.Clients;
+            return null;
         }
     }
 }

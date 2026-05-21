@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TvoeTiloApp.Infrastructure.DataAccess.DbContexts;
 
@@ -11,9 +12,11 @@ using TvoeTiloApp.Infrastructure.DataAccess.DbContexts;
 namespace TvoeTiloApp.Infrastructure.DataAccess.Migrations
 {
     [DbContext(typeof(TvoeTiloAppDbContext))]
-    partial class TvoeTiloAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260507170318_AddedBasicStructure")]
+    partial class AddedBasicStructure
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,9 +150,6 @@ namespace TvoeTiloApp.Infrastructure.DataAccess.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()

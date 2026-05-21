@@ -4,6 +4,6 @@ namespace TvoeTiloApp.Contract.Repositories
 {
     public interface IClientRepository
     {
-        IQueryable<Client> GetAll();
+        IQueryable<ClientProfile> GetAll();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using TvoeTiloApp.Domain.Entities;
+using TvoeTiloApp.Model.Requests;
 using TvoeTiloApp.Model.Responses;
 
 namespace TvoeTiloApp.Core.AutoMapperProfiles
@@ -8,7 +9,11 @@ namespace TvoeTiloApp.Core.AutoMapperProfiles
     {
         public MappingProfile() 
         {
-            CreateMap<Client, ClientResponse>();
+            CreateMap<ClientProfile, ClientResponse>();
+            CreateMap<User, UserLoginResponse>();
+            CreateMap<User, UserResponse>();
+
+            CreateMap<CreateClientUserRequest, User>();
         }
     }
 }

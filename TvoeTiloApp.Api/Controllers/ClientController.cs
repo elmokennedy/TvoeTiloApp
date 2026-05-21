@@ -4,7 +4,7 @@ using TvoeTiloApp.Contract.Services;
 namespace TvoeTiloApp.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ClientController : ControllerBase
     {
         private readonly IClientService _clientService;
