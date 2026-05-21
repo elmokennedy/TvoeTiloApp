@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TvoeTiloApp.Contract.Repositories;
 using TvoeTiloApp.Domain.Entities;
+using TvoeTiloApp.Domain.Enums;
 using TvoeTiloApp.Infrastructure.DataAccess.DbContexts;
 
 namespace TvoeTiloApp.Infrastructure.DataAccess.Repositories
@@ -14,9 +15,9 @@ namespace TvoeTiloApp.Infrastructure.DataAccess.Repositories
             context = _context;
         }
 
-        public IQueryable<User> GetAll()
+        public IQueryable<User> GetActiveClients()
         {
-            return context.Users;
+            return context.Users.Where(x => x.UserRole == UserRole.Client && x.IsActive);
         }
 
         public async Task<User> GetByIdAsync(int id)

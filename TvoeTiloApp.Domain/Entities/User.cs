@@ -10,6 +10,7 @@ namespace TvoeTiloApp.Domain.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
+        public bool IsActive { get; set; }
         public UserRole UserRole { get; set; }
 
         public CoachProfile? CoachProfile { get; set; }

@@ -19,9 +19,9 @@ namespace TvoeTiloApp.Core.Services
             _mapper = mapper;
         }
 
-        public List<UserResponse> GetAll()
+        public List<UserResponse> GetActiveClients()
         {
-            var users = _repository.GetAll();
+            var users = _repository.GetActiveClients();
             return _mapper.Map<List<UserResponse>>(users);
         }
 
@@ -43,15 +43,37 @@ namespace TvoeTiloApp.Core.Services
             var clientUser = _mapper.Map<User>(request);
             clientUser.UserRole = UserRole.Client;
             clientUser.ClientProfile = new ClientProfile();
+            clientUser.PasswordHash = "defaultpasswordhash";
+            clientUser.IsActive = true;
 
             await _repository.AddAsync(clientUser);
         }
 
-        public async Task UpdateClientUser(UpdateClientUserRequest request)
+        public async Task UpdateClientUser(int userId, UpdateClientUserRequest request)
         {
-            var user = await _repository.GetUserByEmailAsync(request.Email);
+            var user = await _repository.GetByIdAsync(userId);
+            //if (user is null)
+            //    throw new Exception("User with this ID doesn't exist!");
+
+            //var user = await _repository.GetUserByEmailAsync(request.Email);
             //if (user is not null)
             //    throw new Exception("User with this Email already exists!");
+
+            user.FirstName = request.FirstName;
+            user.LastName = request.LastName;
+            user.Email = request.Email;
+            user.PhoneNumber = request.PhoneNumber;
+
+            await _repository.UpdateAsync(user);
+        }
+
+        public async Task DeleteClientUser(int userId)
+        {
+            var user = await _repository.GetByIdAsync(userId);
+            //if (user is null)
+            //    throw new Exception("User with this ID doesn't exist!");
+
+            user.IsActive = false;
 
             await _repository.UpdateAsync(user);
         }

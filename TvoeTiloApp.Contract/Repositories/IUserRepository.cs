@@ -4,7 +4,9 @@ namespace TvoeTiloApp.Contract.Repositories
 {
     public interface IUserRepository
     {
-        IQueryable<User> GetAll();
+        IQueryable<User> GetActiveClients();
+
+        Task<User> GetByIdAsync(int id);
 
         Task<User> GetUserByEmailAsync(string email);
 
