@@ -37,8 +37,8 @@ namespace TvoeTiloApp.Core.Services
         public async Task CreateClientUser(CreateClientUserRequest request)
         {
             var user = await _repository.GetUserByEmailAsync(request.Email);
-            //if (user is not null)
-            //    throw new Exception("User with this Email already exists!");
+            if (user is not null)
+                throw new Exception("User with this Email already exists!");
 
             var clientUser = _mapper.Map<User>(request);
             clientUser.UserRole = UserRole.Client;
